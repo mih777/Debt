@@ -17,9 +17,7 @@ export class CalcService {
   url: string = 'https://graph-server777.herokuapp.com'
 
   //url: string = 'http://localhost:3000'
-
   days: Day[] = []
-
   constructor(private http: HttpClient) { }
 
   record(body: any): Observable<Day[]>{
@@ -32,8 +30,6 @@ export class CalcService {
 
   updateDay(id: string, body: Day): Observable<Day>{
     return this.http.put<Day>(`${this.url}/api/debt/update/${id}`, body)
-  }
-
-  
+  } 
 
 }

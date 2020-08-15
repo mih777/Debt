@@ -131,9 +131,6 @@ export class AppComponent {
 
 
   
-
-
-  
   record(){
     const formData = { ...this.form.value }
     //console.log(formData.hours)
