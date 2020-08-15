@@ -89,9 +89,6 @@ export class AppComponent {
       })
   }
 
-
-
-
   hoursMinus(){
     if(this.hours_value_ui == 0){
       return
