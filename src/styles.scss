@@ -21,6 +21,7 @@ $btn-outline-primary: #ff9d00;
 
 .form-control{
     font-size: 2rem;
+    border-radius: 2px;
 }
 
 
@@ -87,10 +88,10 @@ $btn-outline-primary: #ff9d00;
         outline: none;
     }
     
-
-    
+  
     
 }
+
 
 a.active.focus,
 a.active:focus,
@@ -116,3 +117,5 @@ outline-width: 0!important;
 outline-style: none!important;
 box-shadow: 0 0 0 0 rgba(0,123,255,0)!important;
 }
+
+
