@@ -18,10 +18,19 @@ export class AppComponent {
   days: any
   form: FormGroup
   date: Date = new Date()
-
   res_array
 
   total_hours
+  total_minutes
+  total_days
+  total_money
+  
+  houl_minutes
+
+  hours_value_ui = 0
+  minutes_value_ui = 0
+
+  dirka = 0
 
   ngOnInit(){
     this.getDays()
@@ -32,31 +41,79 @@ export class AppComponent {
       overtime: new FormControl(0.0) 
     })
     this.compute_houl_working()
+    console.log(this.res_array)
   }
+
+  hoursMinus(){
+    if(this.hours_value_ui == 0){
+      return
+    }else{
+      this.hours_value_ui--
+    }
+  }
+
+  hoursPlus(){
+    this.hours_value_ui++
+  }
+
+  minutesMinus(){
+    if(this.minutes_value_ui == 0){
+      return
+    }else{
+      this.minutes_value_ui--
+    }
+  }
+
+  minutesPlus(){
+    this.minutes_value_ui++
+  }
+
+
+  minutesMinus10(){
+    if(this.minutes_value_ui == 0){
+      return
+    }else{
+      this.minutes_value_ui -= 10
+    }
+  }
+
+  minutesPlus10(){
+    this.minutes_value_ui += 10
+  }
+
+
+  
 
 
   compute_houl_working(){
     this.service.getAllDays()
       .subscribe(res => {
         this.res_array = res
-        // console.log(this.res_array[1].hours)
-        //const qwert = this.compute_all_hours(this.res_array)
 
         let total_hours = 0
         let total_minutes = 0
+        //let vsego_vremeni = ''
+        
+
         for(let i = 0; i < this.res_array.length; i++){
-          total_hours += this.res_array[i].hours  
+          total_hours += this.res_array[i].hours     
+        }
+
+        for(let i = 0; i < this.res_array.length; i++){  
           total_minutes += this.res_array[i].minutes
         }
-        console.log('total minutes from hours',total_hours*60)
-        console.log('total_minutes',total_minutes)
-        console.log('total hours', ((total_hours*60)+total_minutes)/60)
-        console.log('total Days', this.res_array.length)
+        
+        this.total_hours = total_hours
+        this.total_minutes = total_minutes % 60
+        this.houl_minutes = total_minutes
 
+        // 
 
-        //console.log('Total Money', this.res_array.length)
-        //console.log('Дней', )
-        //console.log('Часов', )
+        //vsego_vremeni = `${this.total_hours}.${this.houl_minutes}`
+         
+        
+        this.total_days = this.res_array.length
+        this.total_money = this.total_hours * this.hour_stavka
       })
   }
 
@@ -78,7 +135,7 @@ export class AppComponent {
       .subscribe(() => {
         this.getDays()
         this.send_confirm = true
-        this.getDays()
+        this.compute_houl_working()
         this.send_res = 'Recorded successfully !'
         setTimeout(() => {
           this.send_confirm = false
@@ -89,22 +146,23 @@ export class AppComponent {
   }
 
   computeOvertime(h, m): number{
-    let calc = 0
+    let overtime = 0
     if(h < 8){
-      calc = 0
+      overtime = 0
     }else{
-      const res = ((h * 60) + m) / 60 
-      calc = res - 8
+      h -= 8
+      const str = `${h}.${m}`
+      overtime = +str
+      
     }
     
-    return calc
+    return overtime
   }
 
   getDays(){
     this.service.getAllDays()
       .subscribe(res => {
-        //console.log(res)
-        //console.log(this.date)
+        
         this.days = res
       })
   }

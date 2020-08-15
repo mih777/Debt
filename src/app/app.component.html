@@ -8,9 +8,7 @@
     <h6>Ставка <strong style="color: green;">{{ stavka }}</strong> р</h6>
     <h6>Час <strong style="color: rgb(0, 51, 128);">{{ hour_stavka }}</strong> р</h6>
     <br>
-    <hr>
-      rtyujtertj
-    <hr>
+    
     <div>
       <table class="table table-bordered">
         <thead class="thead-dark">
@@ -19,48 +17,54 @@
             <th scope="col">Всего денег</th>
             <th scope="col">Дней</th>
             <th scope="col">Часов</th>
+            <th scope="col">минут всего</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            
-            <td class="money">40 000 <small>тугриков</small></td>
-            <td class="days">2 <small>дней</small></td>
-            <td class="days">13 <small>часов</small></td>
+            <td class="money">{{ total_money }} </td>
+            <td class="days">{{ total_days }} </td>
+            <td class="days">{{ total_hours }} </td>
+            <td class="days">{{ houl_minutes }} </td>
           </tr>
           
         </tbody>
       </table>
     </div>
 
-    
-    
     <form [formGroup]="form" (ngSubmit)="record()">
         <div   class="form-group" >
-          <label for="exampleInputEmail1">Hours</label>
+          <label for="exampleInputEmail1">Часов</label>
           <input 
           type="number" 
           formControlName="hours"
           class="form-control" 
           min="0" 
-          value="0">
+          value="0"
+          [(ngModel)]="hours_value_ui"
+          >
           <div class="adjast">
-            <button type="button" class="btn btn-secondary">-</button>
-            <button type="button" class="btn btn-dark darc ">+</button>
+            <button type="button" class="btn btn-secondary" (click)="hoursMinus()">-</button>
+            <button type="button" class="btn btn-dark darc " (click)="hoursPlus()">+</button>
           </div>
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Minutes</label>
+          <label for="exampleInputPassword1">Минут</label>
           <input 
           type="number" 
           formControlName="minutes"
           class="form-control" 
           min="0" 
-          value="0">
+          value="0"
+          [(ngModel)]="minutes_value_ui"
+          >
           <div class="adjast">
-            <button type="button" class="btn btn-secondary">-</button>
-            <button type="button" class="btn btn-dark darc ">+</button>
+            <button type="button" class="btn btn-secondary" (click)="minutesMinus()">-</button>
+            <button type="button" class="btn btn-dark darc " (click)="minutesPlus()">+</button>
+            <button type="button" class="btn btn-secondary marginleft" (click)="minutesMinus10()">- 10</button>
+            <button type="button" class="btn btn-dark darc " (click)="minutesPlus10()">+ 10</button>
           </div>
+          
         </div>
         <button 
           type="submit" 
@@ -69,7 +73,7 @@
       </form>
 
       <hr>
-      <div>
+      <!-- <div>
         <h3>Времени в уме (ушел в минус)</h3>
         <table class="table table-bordered">
           <thead class="thead-dark">
@@ -98,7 +102,7 @@
           <button type="button" class="btn btn-outline-secondary mem">-</button>
         </div>
         <button type="button" class="btn btn-outline-primary btn-send btn-height">remember</button>
-      </div><br><br>
+      </div><br><br> -->
 
 
       <div>
