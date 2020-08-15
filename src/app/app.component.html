@@ -1,10 +1,5 @@
 <div class="container main-div">
-    <div 
-    *ngIf="send_confirm"
-    class="alert alert-info" 
-    role="alert">
-        {{send_res}}
-    </div>
+    
     <h6>Ставка <strong style="color: green;">{{ stavka }}</strong> р</h6>
     <h6>Час <strong style="color: rgb(0, 51, 128);">{{ hour_stavka }}</strong> р</h6>
     <h6>Минута <strong style="color: rgb(128, 0, 75);">{{ one_minute }}</strong> р</h6>
@@ -34,7 +29,14 @@
         <li class="list-group-item list-group-item-warning"><h2>{{ houl_minutes }} <small>минут</small></h2> </li>
       </ul>
 
-    </div><br><br>
+    </div>
+    <br>
+    <div 
+        *ngIf="send_confirm"
+        class="alert alert-info" 
+        role="alert">
+        {{send_res}}
+    </div>
 
     <form [formGroup]="form" (ngSubmit)="record()">
         <div   class="form-group" >
@@ -44,7 +46,7 @@
           formControlName="hours"
           class="form-control" 
           min="0" 
-          value="0"
+          
           [(ngModel)]="hours_value_ui"
           >
           <div class="adjast">
@@ -59,7 +61,7 @@
           formControlName="minutes"
           class="form-control" 
           min="0" 
-          value="0"
+          
           [(ngModel)]="minutes_value_ui"
           >
           <div class="adjast">

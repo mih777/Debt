@@ -149,6 +149,7 @@ export class AppComponent {
         this.send_confirm = true
         this.compute_houl_working()
         this.send_res = 'Recorded successfully !'
+        this.form.reset()
         setTimeout(() => {
           this.send_confirm = false
           this.send_res = ''
