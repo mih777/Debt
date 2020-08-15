@@ -16,22 +16,25 @@
           <tr>
             
             <th scope="col">Всего денег</th>
-            <th scope="col">Дней</th>
-            <th scope="col">Часов</th>
-            <th scope="col">минут всего</th>
+            
           </tr>
         </thead>
         <tbody>
           <tr>
             <td class="money">{{ moneyAll }} </td>
-            <td class="days">{{ total_days }} </td>
-            <td class="days">{{ total_hours }} </td>
-            <td class="days">{{ houl_minutes }} </td>
           </tr>
           
         </tbody>
       </table>
-    </div>
+
+      <ul class="list-group">
+        <li class="list-group-item">Total calculation</li>
+        <li class="list-group-item list-group-item-success"><h2>{{ total_days }} <small>дней</small></h2></li>
+        <li class="list-group-item list-group-item-primary"><h2>{{ total_hours }} <small>часов</small></h2> </li>
+        <li class="list-group-item list-group-item-warning"><h2>{{ houl_minutes }} <small>минут</small></h2> </li>
+      </ul>
+
+    </div><br><br>
 
     <form [formGroup]="form" (ngSubmit)="record()">
         <div   class="form-group" >
@@ -106,27 +109,33 @@
       </div><br><br> -->
 
 
-      <div>
-        <h2>{{ date | date}}</h2>
-        <h3>Details</h3>
+      <div >
+        <button 
+          (click)="togle = !togle"
+          type="submit" 
+          class="btn btn-outline-primary btn-send btn-height details"
+        >DETAILS</button>
+
         <hr>
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>hours</th>
-              <th>minutes</th>
-              <th>overtime</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let day of days">
-              <td>{{ day.date | date }}</td>
-              <td>{{ day.hours }}</td>
-              <td>{{ day.minutes }}</td>
-              <td>{{ day.overtime }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div *ngIf="togle">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>hours</th>
+                <th>minutes</th>
+                <th>overtime</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let day of days">
+                <td>{{ day.date | date }}</td>
+                <td>{{ day.hours }}</td>
+                <td>{{ day.minutes }}</td>
+                <td>{{ day.overtime }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 </div>

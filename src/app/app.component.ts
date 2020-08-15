@@ -11,6 +11,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class AppComponent {
   constructor(private service: CalcService){}
 
+  togle = false
   stavka = 1500
   hour_stavka = this.stavka / 8
   one_minute = this.hour_stavka / 60
