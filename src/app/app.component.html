@@ -1,25 +1,32 @@
 <div class="container main-div">
-    <!-- <div class="alert alert-info" role="alert">
-        A simple info alert—check it out!
-    </div> -->
-
-    
+    <div 
+    *ngIf="send_confirm"
+    class="alert alert-info" 
+    role="alert">
+        {{send_res}}
+    </div>
+    <h6>Ставка <strong style="color: green;">{{ stavka }}</strong> р</h6>
+    <h6>Час <strong style="color: rgb(0, 51, 128);">{{ hour_stavka }}</strong> р</h6>
+    <br>
+    <hr>
+      rtyujtertj
+    <hr>
     <div>
       <table class="table table-bordered">
         <thead class="thead-dark">
           <tr>
             
-            <th scope="col">Total money</th>
-            <th scope="col">Total days</th>
-            
+            <th scope="col">Всего денег</th>
+            <th scope="col">Дней</th>
+            <th scope="col">Часов</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             
-            <td class="money">40 000 р</td>
-            <td class="days">90 дней</td>
-            
+            <td class="money">40 000 <small>тугриков</small></td>
+            <td class="days">2 <small>дней</small></td>
+            <td class="days">13 <small>часов</small></td>
           </tr>
           
         </tbody>
@@ -27,10 +34,16 @@
     </div>
 
     
-    <form>
-        <div class="form-group">
+    
+    <form [formGroup]="form" (ngSubmit)="record()">
+        <div   class="form-group" >
           <label for="exampleInputEmail1">Hours</label>
-          <input type="number" class="form-control" min="0" value="0">
+          <input 
+          type="number" 
+          formControlName="hours"
+          class="form-control" 
+          min="0" 
+          value="0">
           <div class="adjast">
             <button type="button" class="btn btn-secondary">-</button>
             <button type="button" class="btn btn-dark darc ">+</button>
@@ -38,47 +51,76 @@
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Minutes</label>
-          <input type="number" class="form-control" min="10" value="10">
+          <input 
+          type="number" 
+          formControlName="minutes"
+          class="form-control" 
+          min="0" 
+          value="0">
           <div class="adjast">
             <button type="button" class="btn btn-secondary">-</button>
             <button type="button" class="btn btn-dark darc ">+</button>
           </div>
         </div>
-        <button type="button" class="btn btn-outline-primary btn-send btn-height">CALC</button>
+        <button 
+          type="submit" 
+          class="btn btn-outline-primary btn-send btn-height"
+        >CALC</button>
       </form>
 
       <hr>
       <div>
-        <h3>Времени в уме</h3>
+        <h3>Времени в уме (ушел в минус)</h3>
         <table class="table table-bordered">
           <thead class="thead-dark">
             <tr>
-              
               <th scope="col">hours</th>
-              <th scope="col">minutes</th>
-              
+              <th scope="col">minutes</th> 
             </tr>
           </thead>
           <tbody>
             <tr>
-              
               <td class="money">
-                34
-                <div>
-                  <button type="button" class="btn btn-outline-secondary mem">+</button>
-                  <button type="button" class="btn btn-outline-secondary mem">-</button>
-                </div>
+                3
+                <hr>
+                <input type="number" class="form-control" min="0" value="0">  
               </td>
               <td class="days">
                 25
-                <div>
-                  <button type="button" class="btn btn-outline-secondary mem">+</button>
-                  <button type="button" class="btn btn-outline-secondary mem">-</button>
-                </div>
+                <hr>
+                <input type="number" class="form-control" min="0" value="0">
               </td>
-              
+            </tr>  
+          </tbody>
+        </table>
+        <div>
+          <button type="button" class="btn btn-outline-secondary mem">+</button>
+          <button type="button" class="btn btn-outline-secondary mem">-</button>
+        </div>
+        <button type="button" class="btn btn-outline-primary btn-send btn-height">remember</button>
+      </div><br><br>
+
+
+      <div>
+        <h2>{{ date | date}}</h2>
+        <h3>Details</h3>
+        <hr>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>hours</th>
+              <th>minutes</th>
+              <th>overtime</th>
             </tr>
-            
+          </thead>
+          <tbody>
+            <tr *ngFor="let day of days">
+              <td>{{ day.date | date }}</td>
+              <td>{{ day.hours }}</td>
+              <td>{{ day.minutes }}</td>
+              <td>{{ day.overtime }}</td>
+            </tr>
           </tbody>
         </table>
       </div>
