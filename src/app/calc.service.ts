@@ -14,24 +14,24 @@ export interface Day{
 })
 export class CalcService {
 
-  prod_url: string = ''
+  url: string = 'https://graph-server777.herokuapp.com'
 
-  local_url: string = 'http://localhost:3000'
+  //url: string = 'http://localhost:3000'
 
   days: Day[] = []
 
   constructor(private http: HttpClient) { }
 
   record(body: any): Observable<Day[]>{
-    return this.http.post<Day[]>(`${this.local_url}/api/debt/create`, body)
+    return this.http.post<Day[]>(`${this.url}/api/debt/create`, body)
   }
 
   getAllDays(){
-    return this.http.get(`${this.local_url}/api/debt/get/debt`)
+    return this.http.get(`${this.url}/api/debt/get/debt`)
   }
 
   updateDay(id: string, body: Day): Observable<Day>{
-    return this.http.put<Day>(`${this.local_url}/api/debt/update/${id}`, body)
+    return this.http.put<Day>(`${this.url}/api/debt/update/${id}`, body)
   }
 
   

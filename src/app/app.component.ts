@@ -82,18 +82,9 @@ export class AppComponent {
         console.log('DEngi vse', MoneyAll)
 
         this.moneyAll = MoneyAll
-        // this.Govno += +this.total_hours * 60
-        // this.Govno += +this.houl_minutes
         
-         //console.log(total_overtime.toFixed(2))
-         //const qwert = total_overtime.toFixed(2)
-
-
-
-        //bonus_overtime = total_overtime * this.hour_stavka
-        //console.log(bonus_overtime)
          this.total_days = this.res_array.length
-        // this.total_money = (this.total_hours + +qwert) * this.hour_stavka
+        
 
       })
   }
