@@ -48,8 +48,6 @@ export class AppComponent {
       overtime: new FormControl(0.0) 
     })
     this.compute_houl_working()
-    
-    console.log(this.res_array)
   }
 
 
@@ -69,9 +67,6 @@ export class AppComponent {
           
         }
 
-        console.log('Часы', total_hours)
-        console.log('Минуты', total_minutes)
-
         this.total_hours = total_hours
         this.total_minutes = total_minutes % 60
 
@@ -80,7 +75,6 @@ export class AppComponent {
         
         MinutesAll = (total_hours * 60)+total_minutes
         MoneyAll = MinutesAll*this.one_minute
-        console.log('DEngi vse', MoneyAll)
 
         this.moneyAll = MoneyAll
         
