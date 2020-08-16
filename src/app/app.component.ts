@@ -55,7 +55,7 @@ export class AppComponent {
     this.service.getAllDays()
       .subscribe(res => {
         this.res_array = res
-        console.log(res)
+
         let total_hours: number = 0
         let total_minutes: number = 0
         let MinutesAll: number = 0
@@ -72,13 +72,12 @@ export class AppComponent {
 
         this.houl_minutes = total_minutes
 
-        
         MinutesAll = (total_hours * 60)+total_minutes
         MoneyAll = MinutesAll*this.one_minute
 
         this.moneyAll = MoneyAll
         
-         this.total_days = this.res_array.length
+        this.total_days = this.res_array.length
         
 
       })
@@ -125,7 +124,7 @@ export class AppComponent {
   
   record(){
     const formData = { ...this.form.value }
-    //console.log(formData.hours)
+    
     const obj = {
       hours: formData.hours,
       minutes: formData.minutes,
